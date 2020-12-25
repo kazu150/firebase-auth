@@ -24,6 +24,14 @@ export const AuthProvider = ({children}) => {
         }
     }
 
+    const updatePass = async (newPass) => {
+        try {
+            await app.auth().updatenewPassword(newPass);
+        } catch (error) {
+            alert(error);
+        }
+    }
+
     useEffect(()=> {
         // app.auth().onAuthStateChanged(setCurrentUser); //TODO 下記のように書くのと同義？
         app.auth().onAuthStateChanged(user => setCurrentUser(user));
@@ -34,6 +42,7 @@ export const AuthProvider = ({children}) => {
             value={{
                 login: login,
                 signup: signup,
+                updatePass: updatePass,
                 currentUser
             }}
         >
